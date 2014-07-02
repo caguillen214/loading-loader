@@ -39,6 +39,11 @@ llLib.storeDependencies = function(module) {
     }
     llLib.loadedModules[dependency] = moduleToAdd;
   });
+  var moduleToAdd = {
+      module: module,
+      parent: module,
+    }
+  llLib.loadedModules[module.name] = moduleToAdd;
 };
 
 llLib.getModule = function(moduleName, getCreated) {
