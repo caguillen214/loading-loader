@@ -1,5 +1,6 @@
 var llLib = {
   createdModules: {},
+  createdMulti: {},
   loadedModules: {},
   originalAngularModule: {}
 };
@@ -7,9 +8,22 @@ var llLib = {
 llLib.start = function() {
   var unusedModules = llLib.getUnusedModules();
   var undeclaredModules = llLib.getUndeclaredModules();
-  if(unusedModules.length || undeclaredModules.length) {
-    llLib.display(unusedModules.concat(undeclaredModules));
+  var multiLoaded = llLib.formatMultiLoaded();
+  if(unusedModules.length || undeclaredModules.length || multiLoaded.length) {
+    llLib.display(unusedModules.concat(undeclaredModules).concat(multiLoaded));
   }
+};
+
+llLib.getUnusedModules = function() {
+  var unusedModules = [];
+  for(var module in llLib.createdModules) {
+    if(!llLib.getModule(module)) {
+      var cModule = llLib.getModule(module,true);
+      var message = 'Module "'+cModule.name+'" was created but never loaded.';
+      unusedModules.push({module:cModule, message:message});
+    }
+  }
+  return unusedModules;
 };
 
 llLib.getUndeclaredModules = function() {
@@ -26,16 +40,18 @@ llLib.getUndeclaredModules = function() {
   return undeclaredModules;
 };
 
-llLib.getUnusedModules = function() {
-  var unusedModules = [];
-  for(var module in llLib.createdModules) {
-    if(!llLib.getModule(module)) {
-      var cModule = llLib.getModule(module,true);
-      var message = 'Module "'+cModule.name+'" was created but never loaded.';
-      unusedModules.push({module:cModule, message:message});
+llLib.formatMultiLoaded = function() {
+  var multiLoaded = [];
+  for(var modName in llLib.createdMulti) {
+    var message = 'Multiple modules with name "'+modName+'" are being created and they will overwrite each other.';
+    var multi = llLib.createdMulti[modName];
+    var details = {
+      exsistingModule: multi[multi.length - 1],
+      overwrittenModules: multi.slice(0,multi.length-1)
     }
+    multiLoaded.push({module:details, message:message});
   }
-  return unusedModules;
+  return multiLoaded;
 };
 
 llLib.display = function(unusedModules) {
