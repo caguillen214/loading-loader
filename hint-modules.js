@@ -2,10 +2,13 @@
 
 angular.module('ngHintModules', []);
 
-var originalAngularModule = angular.module;
+var hintLog = angular.hint = require('angular-hint-log');
 var storeDependencies = require('./lib/storeDependencies');
 var getModule = require('./lib/getModule');
 var start = require('./lib/start');
+var modData = require('./lib/moduleData');
+
+var originalAngularModule = angular.module;
 
 angular.module = function() {
   var module = originalAngularModule.apply(this,arguments);
