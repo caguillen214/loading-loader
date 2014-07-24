@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Mon Jul 07 2014 10:34:00 GMT-0700 (PDT)
+// Generated on Thu Jun 12 2014 16:09:37 GMT-0700 (PDT)
 
 module.exports = function(config) {
   config.set({
@@ -10,29 +10,26 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['browserify', 'jasmine'],
 
 
     // list of files / patterns to load in the browser
     files: [
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'll-lib/*.js',
-      'decorator.js',
-      'decorator_test.js'
+      'hint-modules.js',
+      'hint-modules_test.js'
     ],
 
 
     // list of files to exclude
-    exclude: [
-
-    ],
+    exclude: [],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-
+      'hint-modules.js': ['browserify']
     },
 
 
@@ -61,7 +58,11 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'Firefox'],
+    browsers: ['Firefox'],
+
+    browserify: {
+      debug: true
+    },
 
 
     // Continuous Integration mode

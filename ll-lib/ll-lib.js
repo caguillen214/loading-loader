@@ -1,3 +1,4 @@
+'use strict';
 var llLib = {
   createdModules: {},
   createdMulti: {},
@@ -48,7 +49,7 @@ llLib.formatMultiLoaded = function() {
     var details = {
       exsistingModule: multi[multi.length - 1],
       overwrittenModules: multi.slice(0,multi.length-1)
-    }
+    };
     multiLoaded.push({module:details, message:message});
   }
   return multiLoaded;
@@ -82,24 +83,25 @@ llLib.getSuggestion = function(module){
   for(var createdModule in llLib.createdModules) {
     if(llLib.areSimilarEnough(createdModule, module)) {
       var currentlevDist = llLib.levenshteinDistance(module, createdModule);
-      var closestMatch = (currentlevDist < min_levDist)? createdModule : closestMatch;
-      var min_levDist = (currentlevDist < min_levDist)? currentlevDist : min_levDist;
+      closestMatch = (currentlevDist < min_levDist)? createdModule : closestMatch;
+      min_levDist = (currentlevDist < min_levDist)? currentlevDist : min_levDist;
     }
   }
   return closestMatch;
-}
+};
 
 llLib.areSimilarEnough = function(s,t) {
-  var strMap = {}, similarities = 0, STRICTNESS = .66;
+  var strMap = {}, similarities = 0, STRICTNESS = 0.66;
   if(Math.abs(s.length-t.length) > 3) {
     return false;
   }
-  s.split('').forEach(function(x){strMap[x] = x});
+  s.split('').forEach(function(x){strMap[x] = x;});
   for (var i = t.length - 1; i >= 0; i--) {
     similarities = strMap[t.charAt(i)] ? similarities + 1 : similarities;
-  };
+  }
   return similarities >= t.length * STRICTNESS;
-}
+};
+
 llLib.levenshteinDistance = function(s, t) {
     if(typeof s !== 'string' || typeof t !== 'string') {
       throw new Error('Function must be passed two strings, given: '+typeof s+' and '+typeof t+'.');
@@ -108,8 +110,8 @@ llLib.levenshteinDistance = function(s, t) {
     var n = s.length;
     var m = t.length;
 
-    if (n == 0) return m;
-    if (m == 0) return n;
+    if (n === 0) return m;
+    if (m === 0) return n;
 
     for (var i = n; i >= 0; i--) d[i] = [];
     for (var i = n; i >= 0; i--) d[i][0] = i;

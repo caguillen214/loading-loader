@@ -1,8 +1,8 @@
 {
-  "name": "angular-hint-loader",
+  "name": "angular-hint-modules",
   "version": "0.0.0",
-  "description": "tool for identifing modules that were created but not loaded",
-  "main": "decorator.js",
+  "description": "An Angular Hint Module for identifying issues related to modules.",
+  "main": "hint-modules.js",
   "devDependencies": {
     "karma": "0.12.16",
     "karma-chrome-launcher": "^0.1.4",
@@ -11,16 +11,26 @@
     "karma-jasmine": "^0.1.5"
   },
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start --browsers Firefox --single-run"
+    "test": "./node_modules/karma/bin/karma start --browsers Firefox --single-run",
+    "build": "gulp"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/caguillen/loading-loader"
+    "url": "https://github.com/angular/angular-hint-modules"
   },
-  "author": "caguillen214",
+  "author": "Carlos A. Guillen",
   "license": "apache 2",
   "bugs": {
-    "url": "https://github.com/caguillen/loading-loader/issues"
+    "url": "https://github.com/angular/angular-hint-modules/issues"
   },
-  "homepage": "https://github.com/caguillen/loading-loader"
+  "homepage": "https://github.com/angular/angular-hint-modules",
+  "dependencies": {
+    "angular-hint-log": "0.0.0",
+    "browserify": "^4.2.0",
+    "gulp": "^3.8.6",
+    "karma-bro": "^0.6.0",
+    "karma-coverage": "^0.2.4",
+    "vinyl-source-stream": "^0.1.1",
+    "watchify": "^0.10.2"
+  }
 }
