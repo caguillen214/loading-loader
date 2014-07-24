@@ -1,10 +1,10 @@
 {
-  "name": "loading-loader",
+  "name": "angular-hint-modules",
   "version": "0.0.0",
   "authors": [
     "Carlos A. Guillen"
   ],
-  "description": "Debugging tool to check created modules and controllers that checks if they're not loaded.",
+  "description": "An Angular Hint Module for identifying issues related to modules.",
   "license": "Apache 2.0",
   "ignore": [
     "**/.*",
@@ -17,9 +17,5 @@
     "karma": "~0.2.2",
     "angular": "~1.2.18",
     "angular-mocks": "~1.2.19",
-    "bootstrap": "~3.1.1",
-    "angular-route": "~1.2.18",
-    "jquery": "~2.1.1",
-    "angular-animate": "~1.2.18"
   }
 }
