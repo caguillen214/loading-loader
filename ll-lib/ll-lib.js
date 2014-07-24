@@ -3,7 +3,6 @@ var llLib = {
   createdModules: {},
   createdMulti: {},
   loadedModules: {},
-  originalAngularModule: {}
 };
 
 llLib.start = function() {

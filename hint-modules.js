@@ -1,22 +1,27 @@
 'use strict';
 
 angular.module('ngHintModules', []);
-llLib.originalAngularModule = angular.module;
+
+var originalAngularModule = angular.module;
+var storeDependencies = require('./lib/storeDependencies');
+var getModule = require('./lib/getModule');
+var start = require('./lib/start');
+
 angular.module = function() {
-  var module = llLib.originalAngularModule.apply(this,arguments);
+  var module = originalAngularModule.apply(this,arguments);
   if(module.requires.length) {
-    llLib.storeDependencies(module);
+    storeDependencies(module);
   }
-  if(llLib.getModule(module.name,true)) {
-    if(!llLib.createdMulti[module.name]) {
-      llLib.createdMulti[module.name] = [llLib.getModule(module.name,true)];
+  if(getModule(module.name,true)) {
+    if(!modData.createdMulti[module.name]) {
+      modData.createdMulti[module.name] = [getModule(module.name,true)];
     }
-    llLib.createdMulti[module.name].push(module);
+    modData.createdMulti[module.name].push(module);
   }
-  llLib.createdModules[module.name] = module;
+  modData.createdModules[module.name] = module;
   return module;
 };
 window.name = 'NG_DEFER_BOOTSTRAP!';
 angular.element(document).ready(function() {
-  llLib.start();
+  start();
 });
