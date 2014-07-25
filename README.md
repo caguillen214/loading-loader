@@ -16,7 +16,7 @@ It is important for modules we create to have their own unique namespace so as t
 angular.module('breadcrumbs').
   directive('myComponent', function() { ... };
 });
-
+```
 ## [License](LICENSE)
 
 Copyright 2014 Google, Inc. http://angularjs.org
