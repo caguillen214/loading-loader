@@ -16,6 +16,6 @@
   "dependencies": {
     "karma": "~0.2.2",
     "angular": "~1.2.18",
-    "angular-mocks": "~1.2.19",
+    "angular-mocks": "~1.2.19"
   }
 }
