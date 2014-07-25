@@ -3,6 +3,20 @@ Angular Hint: Modules[![Build Status](https://travis-ci.org/angular/angular-hint
 
 Angular Hint Modules lets you spend less time finding silent errors in your code and more time programming. This tool is a subset of many under the [Angular Hint](https://github.com/angular/angular-hint) repository that specializes in identifying errors relating to directives. For instructions on how to incorporate the whole Angular Hint repository into your project, please refer to the link above.
 
+#### Angular Hint Modules identifies:
+  - [Modules missing proper namespaces](#missing-namespace)
+  - [Modules created but never loaded](#misspelled-directives-and-attributes)
+  - [Multiple modules created with same name](#missing-required-attributes)
+  - [Undeclared modules loaded](#misspelled-directives-and-attributes)
+  - [Using ngView without ngRoute](#following-restrict-property)
+
+#### Missing Namespace
+It is important for modules we create to have their own unique namespace so as to not conflict with exsisting modules in Angular or external libraries that may be used. As in the example below, if a module with name 'breadcrumb' was created, you would be warned and prompted to use a more appropriate name that adheres to namespace best practices.
+```javascript
+angular.module('breadcrumbs').
+  directive('myComponent', function() { ... };
+});
+
 ## [License](LICENSE)
 
 Copyright 2014 Google, Inc. http://angularjs.org
