@@ -11,7 +11,7 @@ Angular Hint Modules lets you spend less time finding silent errors in your code
   - [Using ngView without ngRoute](#ngview-with-ngroute)
 
 #### Missing Namespace
-It is important for modules we create to have their own unique namespace so as to not conflict with exsisting modules in Angular or external libraries that may be used. As in the example below, if a module with name 'breadcrumb' was created, you would be warned and prompted to use a more appropriate name that adheres to namespace best practices.
+It is important for modules we create to have their own unique namespace so as to not conflict with existing modules in Angular or external libraries that may be used. As in the example below, if a module with name 'breadcrumb' was created, you would be warned and prompted to use a more appropriate name that adheres to namespace best practices.
 ```javascript
 angular.module('breadcrumbs').
   directive('myComponent', function() { ... };
@@ -28,14 +28,14 @@ angular.module('createdAndLoaded',[]);
 angular.module('createdAndLoaded',[]);
 angular.module('createdButNotLoaded',[]);
 angular.module('demoApp',
-  ['ngHintModules','createdAndLoaded', 'createdButNLoadd','iDontEvenExsist']);
+  ['ngHintModules','createdAndLoaded', 'createdButNLoadd','iDontEvenexist']);
 
 ```
 In the example above you would be warned that:
 - The `createdButNotLoaded` module was created but that it was never loaded into the application.
 - The `createdButNLoadd` module was not found and that you should try `createdButNotLoaded`.
 - The `createdAndLoaded` module name was used twice and the first will be overwritten.
-- The `iDontEvenExsist` module was loaded but it was never created.
+- The `iDontEvenexist` module was loaded but it was never created.
 
 #### ngView with ngRoute
 After routing was seperated from Angular.js, it was required to have `ngRoute` as a dependency for your main module. Since this change, `ngRoute` often got left out, so this module also notifies you if you have routing in your application without requiring `ngRoute`.

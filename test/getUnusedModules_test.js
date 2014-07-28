@@ -8,8 +8,8 @@ describe('getUnusedModules()', function() {
     expect(res[0].module.name).toBe('iAmUnused');
   });
   it('should get ignore used modules', function() {
-    angular.module('thisDoesExsist',[]);
-    angular.module('testModule',['thisDoesExsist']);
+    angular.module('thisDoesexist',[]);
+    angular.module('testModule',['thisDoesexist']);
     var res = getUnusedModules();
     expect(res.length).toBe(1);
   });
