@@ -5,7 +5,7 @@ Angular Hint Modules lets you spend less time finding silent errors in your code
 
 #### Angular Hint Modules identifies:
   - [Modules missing proper namespaces](#missing-namespace)
-  - [Modules created but never loaded](#misspelled-directives-and-attributes)
+  - [Modules created but never loaded](#unloaded-modules)
   - [Multiple modules created with same name](#missing-required-attributes)
   - [Undeclared modules loaded](#misspelled-directives-and-attributes)
   - [Using ngView without ngRoute](#following-restrict-property)
@@ -17,6 +17,29 @@ angular.module('breadcrumbs').
   directive('myComponent', function() { ... };
 });
 ```
+
+#### Creating and Loading Modules
+Hint Modules also notifies you of common problems regarding the creation and loading of modules.
+
+The following code snippit will be the example for the following sections:
+
+```Javascript
+angular.module('createdAndLoaded',[]);
+angular.module('createdAndLoaded',[]);
+angular.module('createdButNotLoaded',[]);
+angular.module('demoApp',
+  ['ngHintModules','createdAndLoaded', 'createdButNLoadd','iDontEvenExsist']);
+
+```
+In the example above you would be warned that:
+- The `createdButNotLoaded` module was created but that it was never loaded into the application.
+- The `createdButNLoadd` module was not found and that you should try `createdButNotLoaded`.
+- The `createdAndLoaded` module name was used twice and the first will be overwritten.
+- The `iDontEvenExsist` module was loaded but it was never created.
+
+#### ngView with ngRoute
+After routing was seperated from Angular.js, it was required to have `ngRoute` as a dependency for your main module. Since this change, `ngRoute` often got left out, so this module also notifies you if you have routing in your application without requiring `ngRoute`.
+
 ## [License](LICENSE)
 
 Copyright 2014 Google, Inc. http://angularjs.org
