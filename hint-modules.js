@@ -9,6 +9,9 @@ var modData = require('./lib/moduleData');
 
 var originalAngularModule = angular.module;
 
+angular.module('ngHintModules', []).config(function() {
+  start();
+});
 
 angular.module = function() {
   var module = originalAngularModule.apply(this,arguments);
@@ -24,8 +27,3 @@ angular.module = function() {
   modData.createdModules[module.name] = module;
   return module;
 };
-
-window.name = 'NG_DEFER_BOOTSTRAP!';
-angular.element(document).ready(function() {
-  start();
-});
