@@ -5,10 +5,10 @@ Angular Hint Modules lets you spend less time finding silent errors in your code
 
 #### Angular Hint Modules identifies:
   - [Modules missing proper namespaces](#missing-namespace)
-  - [Modules created but never loaded](#unloaded-modules)
-  - [Multiple modules created with same name](#missing-required-attributes)
-  - [Undeclared modules loaded](#misspelled-directives-and-attributes)
-  - [Using ngView without ngRoute](#following-restrict-property)
+  - [Modules created but never loaded](#creating-and-loading-modules)
+  - [Multiple modules created with same name](#creating-and-loading-modules)
+  - [Undeclared modules loaded](#creating-and-loading-modules)
+  - [Using ngView without ngRoute](#ngview-with-ngroute)
 
 #### Missing Namespace
 It is important for modules we create to have their own unique namespace so as to not conflict with exsisting modules in Angular or external libraries that may be used. As in the example below, if a module with name 'breadcrumb' was created, you would be warned and prompted to use a more appropriate name that adheres to namespace best practices.
