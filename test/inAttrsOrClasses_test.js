@@ -1,7 +1,7 @@
 var inAttrsOrClasses = require('../lib/inAttrsOrClasses');
 
 describe('inAttrsOrClasses()', function() {
-  it('should identify if ng-view exsists in the attributes', function() {
+  it('should identify if ng-view exists in the attributes', function() {
     var attrs = [
       {nodeName: 'id', value:'#testVal'},
       {nodeName: 'width', value:'100px'},
@@ -9,7 +9,7 @@ describe('inAttrsOrClasses()', function() {
     var res = inAttrsOrClasses(attrs);
     expect(res).toBe(true);
   });
-  it('should identify if ng-view exsists in the class attribute', function() {
+  it('should identify if ng-view exists in the class attribute', function() {
     var attrs = [
       {nodeName: 'id', value:'#testVal'},
       {nodeName: 'width', value:'100px'},
@@ -17,7 +17,7 @@ describe('inAttrsOrClasses()', function() {
     var res = inAttrsOrClasses(attrs);
     expect(res).toBe(true);
   });
-  it('should identify if ng-view does not exsist', function() {
+  it('should identify if ng-view does not exist', function() {
     var attrs = [
       {nodeName: 'id', value:'#testVal'},
       {nodeName: 'width', value:'100px'},
