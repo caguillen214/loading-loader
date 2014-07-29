@@ -18,7 +18,8 @@ module.exports = function(config) {
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'hint-modules.js',
-      'test/*_test.js'
+      'test/*_test.js',
+      'hint-modules_test.js'
     ],
 
 
