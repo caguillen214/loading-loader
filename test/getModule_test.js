@@ -1,4 +1,5 @@
 var getModule = require('../lib/getModule');
+var mD = require('../lib/moduleData');
 
 describe('getModule()', function() {
   it('should return the correct module', function() {
@@ -10,6 +11,6 @@ describe('getModule()', function() {
     var res3 = getModule('testCreated', LOADED);
     expect(res1.name).toBe('testCreated');
     expect(res2).toBe('testLoaded');
-    expect(res3).toBe('testCreated');
+    expect(res3).toBe(undefined);
   });
 });
