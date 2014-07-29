@@ -31,6 +31,7 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       'hint-modules.js': ['browserify'],
+      'hint-modules_test.js': ['browserify'],
       'test/*_test.js' : ['browserify']
     },
 
@@ -60,7 +61,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Firefox'],
+    browsers: ['Chrome'],
 
     browserify: {
       debug: true
