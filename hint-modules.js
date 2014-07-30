@@ -34,13 +34,3 @@ angular.module('ngHintModules', []).config(function() {
   storeUsedModules(ngAppMod, modules);
   start();
 });
-
-// var storeUsedModules = function(module, modules){
-//   if(module) {
-//     storeDependencies(module);
-//     module.requires.forEach(function(modName) {
-//       var mod = modules[modName];
-//       storeUsedModules(mod, modules);
-//     });
-//   }
-// }
