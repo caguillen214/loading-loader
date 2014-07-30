@@ -1,28 +1,25 @@
 'use strict';
 
-
 var hintLog = angular.hint = require('angular-hint-log');
 var storeDependencies = require('./lib/storeDependencies');
 var getModule = require('./lib/getModule');
 var start = require('./lib/start');
 var storeNgAppAndView = require('./lib/storeNgAppAndView');
+var storeUsedModules = require('./lib/storeUsedModules');
 var modData = require('./lib/moduleData');
 
+var doc = Array.prototype.slice.call(document.getElementsByTagName('*'));
 var originalAngularModule = angular.module;
+var modules = {};
 
+storeNgAppAndView(doc);
 
 angular.module = function() {
   var module = originalAngularModule.apply(this,arguments);
-  //store ngApp Module & check for ngView
-  storeNgAppAndView();
-
-  //if module has dependencies
-  if(module.requires.length) {
-    storeDependencies(module);
-  }
-
-  //if module already exsists
-  if(getModule(module.name, true)) {
+  var name = module.name;
+  modules[name] = module;
+  var modToCheck = getModule(module.name, true);
+  if(modToCheck && modToCheck.requires.length && module.requires.length) {
     if(!modData.createdMulti[module.name]) {
       modData.createdMulti[module.name] = [getModule(module.name,true)];
     }
@@ -33,5 +30,17 @@ angular.module = function() {
 };
 
 angular.module('ngHintModules', []).config(function() {
+  var ngAppMod = modules[modData.ngAppMod];
+  storeUsedModules(ngAppMod, modules);
   start();
 });
+
+// var storeUsedModules = function(module, modules){
+//   if(module) {
+//     storeDependencies(module);
+//     module.requires.forEach(function(modName) {
+//       var mod = modules[modName];
+//       storeUsedModules(mod, modules);
+//     });
+//   }
+// }

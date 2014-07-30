@@ -27,7 +27,7 @@ The following code snippit will be the example for the following sections:
 angular.module('createdAndLoaded',[]);
 angular.module('createdAndLoaded',[]);
 angular.module('createdButNotLoaded',[]);
-angular.module('demoApp',
+angular.module('testModule',
   ['ngHintModules','createdAndLoaded', 'createdButNLoadd','iDontEvenexist']);
 
 ```

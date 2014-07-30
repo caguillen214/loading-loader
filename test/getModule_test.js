@@ -1,16 +1,14 @@
 var getModule = require('../lib/getModule');
-var mD = require('../lib/moduleData');
+var modData = require('../lib/moduleData');
 
 describe('getModule()', function() {
   it('should return the correct module', function() {
     var CREATED = true, LOADED = false;
-    angular.module('testLoaded', []);
-    angular.module('testCreated', ['testLoaded']);
+    modData.loadedModules['testLoaded'] = {name: 'testLoaded'};
+    modData.createdModules['testCreated'] = {name: 'testCreated'};
     var res1 = getModule('testCreated', CREATED);
     var res2 = getModule('testLoaded', LOADED);
-    var res3 = getModule('testCreated', LOADED);
     expect(res1.name).toBe('testCreated');
-    expect(res2).toBe('testLoaded');
-    expect(res3).toBe(undefined);
+    expect(res2.name).toBe('testLoaded');
   });
 });
